@@ -6,22 +6,26 @@ import com.example.Movie_Ticketing_Service_Application.Enums.Language;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name= "movie")
+@Builder
 public class Movie {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int movieId;
+    private int Id;
 
     @Column(unique = true,nullable = false)
     private String movieName;
 
-    private double rating;
+    private double ratings;
 
     private int duration;
 
@@ -30,6 +34,11 @@ public class Movie {
 
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
+
+
+    //this is the parent for the show
+    @OneToMany(mappedBy = "movie" ,cascade = CascadeType.ALL)
+    private List<Show> showMovieList  = new ArrayList<>();
 
 
 

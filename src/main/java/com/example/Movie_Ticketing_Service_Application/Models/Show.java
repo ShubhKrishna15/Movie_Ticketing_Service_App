@@ -7,16 +7,21 @@ import jdk.jfr.Timestamp;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.dialect.MySQL5Dialect;
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "show")
+@Builder
+@Table(name = "view")
 public class Show {
 
 
@@ -36,6 +41,23 @@ public class Show {
 
     @UpdateTimestamp
     private Date UpdatedOn;
+
+    @ManyToOne
+    @JoinColumn
+    private Movie movie;
+
+    @ManyToOne
+    @JoinColumn
+    private Theater theater;
+
+    @OneToMany(mappedBy = "show",cascade = CascadeType.ALL)
+    private List<Ticket> listOfBookedTickets = new ArrayList<>();
+
+
+    @OneToMany(mappedBy  ="show",cascade = CascadeType.ALL)
+    private List<ShowSeat> showSeatList= new ArrayList<>();
+
+
 
 
 }

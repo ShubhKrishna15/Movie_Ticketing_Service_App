@@ -12,12 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "theater")
+@Builder
 public class Theater {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int theaterId;
+    private int Id;
 
     private String name;
 
@@ -26,5 +27,8 @@ public class Theater {
 
     @OneToMany(mappedBy = "theater",cascade = CascadeType.ALL)
     private List<TheaterSeat> theaterSeatList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "theater",cascade = CascadeType.ALL)
+    private List<Show> ListOfTheaterShows = new ArrayList<>();
 
 }

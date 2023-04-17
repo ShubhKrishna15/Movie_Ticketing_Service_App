@@ -22,7 +22,7 @@ public class ShowSeat {
 
     private int price;
 
-    private String seatNo ;
+    private String seatNo;
 
     @Enumerated(value = EnumType.STRING)
     private SeatType seatType;
@@ -30,5 +30,8 @@ public class ShowSeat {
     private Date bookedAt;
 
 
-
+    @ManyToOne
+    @JoinColumn
+    private Show show;
 }
+

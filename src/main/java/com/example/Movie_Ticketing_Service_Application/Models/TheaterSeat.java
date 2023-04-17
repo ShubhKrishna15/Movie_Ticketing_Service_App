@@ -3,20 +3,19 @@ package com.example.Movie_Ticketing_Service_Application.Models;
 
 import com.example.Movie_Ticketing_Service_Application.Enums.SeatType;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "theaterSeat")
+@Builder
+@AllArgsConstructor
 public class TheaterSeat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int theaterSeatId;
+    private int Id;
 
 
     @Enumerated(value = EnumType.STRING)
